@@ -1,0 +1,11 @@
+{
+  "name": "movie-booking-site",
+  "version": "1.0.0",
+  "description": "Movie Ticket Booking System (DBMS Project)",
+  "private": true,
+  "scripts": {
+    "dev": "npm run dev --prefix server",
+    "start": "npm start --prefix server",
+    "install:server": "npm install --prefix server"
+  }
+}
