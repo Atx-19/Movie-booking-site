@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Reports — Movie Ticket Booking System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <main class="main-container">
+        <header class="page-header">
+            <h1>Database Reports & Advanced Analytics</h1>
+            <p>Live queries demonstrating Views, GROUP BY + HAVING, Subqueries, Relational Division, and Triggers.</p>
+        </header>
+
+        <!-- Report 1: View v_movie_revenue -->
+        <section class="form-card" style="max-width: 100%; margin-bottom: 2rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <div>
+                    <h2 style="color: var(--primary); font-size: 1.25rem;">📊 Movie Revenue Leaderboard</h2>
+                    <span style="font-size: 0.8rem; color: var(--text-muted);">Source: Database View <code>v_movie_revenue</code></span>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="data-table" id="movieRevenueTable">
+                    <thead>
+                        <tr>
+                            <th>Movie</th>
+                            <th>Language</th>
+                            <th>Bookings</th>
+                            <th>Tickets Sold</th>
+                            <th>Total Revenue</th>
+                        </tr>
+                    </thead>
+                    <tbody><tr><td colspan="5" style="color: var(--text-muted);">Loading revenue view...</td></tr></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Report 2: View v_show_availability -->
+        <section class="form-card" style="max-width: 100%; margin-bottom: 2rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <div>
+                    <h2 style="color: var(--primary); font-size: 1.25rem;">🎟️ Live Seat Availability</h2>
+                    <span style="font-size: 0.8rem; color: var(--text-muted);">Source: Database View <code>v_show_availability</code></span>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="data-table" id="showAvailabilityTable">
+                    <thead>
+                        <tr>
+                            <th>Show ID</th>
+                            <th>Movie</th>
+                            <th>Theatre</th>
+                            <th>Screen</th>
+                            <th>Show Time</th>
+                            <th>Capacity</th>
+                            <th>Booked</th>
+                            <th>Available</th>
+                        </tr>
+                    </thead>
+                    <tbody><tr><td colspan="8" style="color: var(--text-muted);">Loading live availability...</td></tr></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Report 3 & 4 Grid -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+            <!-- Report 3: High-Volume Theatres (HAVING) -->
+            <section class="form-card" style="max-width: 100%; margin: 0;">
+                <h2 style="color: var(--primary); font-size: 1.15rem; margin-bottom: 0.25rem;">🏛️ Busiest Theatres</h2>
+                <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">
+                    SQL Concept: <code>GROUP BY ... HAVING COUNT(b.booking_id) >= 2</code>
+                </div>
+                <div class="table-responsive">
+                    <table class="data-table" id="busiestTheatresTable">
+                        <thead>
+                            <tr>
+                                <th>Theatre</th>
+                                <th>City</th>
+                                <th>Confirmed Bookings</th>
+                                <th>Total Revenue</th>
+                            </tr>
+                        </thead>
+                        <tbody><tr><td colspan="4">Loading...</td></tr></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Report 4: Above-Average Rated Movies (Subquery) -->
+            <section class="form-card" style="max-width: 100%; margin: 0;">
+                <h2 style="color: var(--primary); font-size: 1.15rem; margin-bottom: 0.25rem;">⭐ Top-Rated Movies</h2>
+                <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">
+                    SQL Concept: Scalar Subquery <code>WHERE rating > (SELECT AVG(rating))</code>
+                </div>
+                <div class="table-responsive">
+                    <table class="data-table" id="topRatedTable">
+                        <thead>
+                            <tr>
+                                <th>Movie</th>
+                                <th>Avg Rating</th>
+                                <th>Reviews Count</th>
+                            </tr>
+                        </thead>
+                        <tbody><tr><td colspan="3">Loading...</td></tr></tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <!-- Report 5: Cancellation Audit Trail -->
+        <section class="form-card" style="max-width: 100%;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <div>
+                    <h2 style="color: var(--primary); font-size: 1.25rem;">🛡️ Trigger Audit Trail</h2>
+                    <span style="font-size: 0.8rem; color: var(--text-muted);">Trigger <code>trg_bookings_after_update</code> logging to <code>audit_log</code></span>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="data-table" id="auditLogTable">
+                    <thead>
+                        <tr>
+                            <th>Log ID</th>
+                            <th>Action</th>
+                            <th>Record ID</th>
+                            <th>Previous State</th>
+                            <th>New State</th>
+                            <th>Performed By</th>
+                            <th>Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody><tr><td colspan="7">Loading audit records...</td></tr></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>DBMS Project — Movie Ticket Booking System</p>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/reports.js"></script>
+</body>
+</html>

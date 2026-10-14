@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Seats — Movie Ticket Booking System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <main class="main-container">
+        <header class="page-header" style="text-align: center;">
+            <h1 id="movieTitleHeader">Select Your Seats</h1>
+            <p id="showMetaHeader" style="color: var(--accent);">Loading show details...</p>
+        </header>
+
+        <!-- Screen Visual -->
+        <div class="screen-area">
+            <div class="screen-visual"></div>
+            <div class="screen-text">All eyes this way — Cinema Screen</div>
+        </div>
+
+        <!-- Legend -->
+        <div class="seat-legend" id="legendContainer">
+            <div class="legend-item"><div class="legend-box available"></div> Available</div>
+            <div class="legend-item"><div class="legend-box selected"></div> Selected</div>
+            <div class="legend-item"><div class="legend-box booked"></div> Booked (Sold Out)</div>
+        </div>
+
+        <!-- Seat Grid -->
+        <section id="seatMatrix" class="seat-matrix">
+            <p style="color: var(--text-muted);">Loading screen layout...</p>
+        </section>
+
+        <!-- Sticky Floating Booking Bar -->
+        <div class="booking-bar" id="bookingBar" style="display: none;">
+            <div class="summary-info">
+                <div class="summary-seats" id="selectedSeatsLabel">No seats selected</div>
+                <div class="summary-total" id="selectedTotalAmount">₹0.00</div>
+            </div>
+            <button id="btnProceed" class="btn btn-primary" disabled>
+                Proceed to Payment ➔
+            </button>
+        </div>
+    </main>
+
+    <script src="js/api.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/seats.js"></script>
+</body>
+</html>

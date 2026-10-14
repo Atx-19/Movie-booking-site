@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Timings — Movie Ticket Booking System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <main class="main-container">
+        <header class="page-header">
+            <h1 id="pageTitle">Show Timings & Venues</h1>
+            <p id="pageSubtitle">Choose your preferred theatre, screen, and show time.</p>
+        </header>
+
+        <section class="filters-bar">
+            <select id="movieSelect" class="filter-select">
+                <option value="">All Movies</option>
+            </select>
+            <select id="citySelect" class="filter-select">
+                <option value="">All Cities</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Bangalore">Bangalore</option>
+            </select>
+        </section>
+
+        <section id="showsContainer" style="display: flex; flex-direction: column; gap: 1.5rem;">
+            <!-- Grouped show times rendered here -->
+            <p style="color: var(--text-muted);">Loading available shows...</p>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>DBMS Project — Movie Ticket Booking System</p>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/shows.js"></script>
+</body>
+</html>

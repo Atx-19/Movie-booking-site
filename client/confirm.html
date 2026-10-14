@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation — Movie Ticket Booking System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <main class="main-container">
+        <header class="page-header" style="text-align: center;">
+            <h1>Review & Confirm Booking</h1>
+            <p>Verify your ticket selection and select payment method.</p>
+        </header>
+
+        <div id="alertBox"></div>
+
+        <div class="form-card" id="summaryCard">
+            <h2 id="confMovieTitle" style="color: var(--primary); margin-bottom: 0.5rem;">Movie Title</h2>
+            <div id="confVenueDetails" style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+                Venue details
+            </div>
+
+            <div style="border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1.25rem 0; margin-bottom: 1.5rem;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                    <span style="color: var(--text-muted);">Selected Seats:</span>
+                    <strong id="confSeatsList" style="color: var(--accent);">—</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                    <span style="color: var(--text-muted);">Customer Profile:</span>
+                    <strong id="confUserName">—</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 1.25rem; margin-top: 1rem; color: var(--primary);">
+                    <span>Total Amount:</span>
+                    <strong id="confTotalAmount">₹0.00</strong>
+                </div>
+            </div>
+
+            <!-- Payment Method Form -->
+            <form id="paymentForm">
+                <div class="form-group">
+                    <label for="paymentMethod">Select Payment Method</label>
+                    <select id="paymentMethod" class="form-control" required>
+                        <option value="upi">UPI (GPay / PhonePe / Paytm)</option>
+                        <option value="credit_card">Credit Card</option>
+                        <option value="debit_card">Debit Card</option>
+                        <option value="net_banking">Net Banking</option>
+                    </select>
+                </div>
+
+                <button type="submit" id="btnPay" class="btn btn-primary btn-block" style="font-size: 1.05rem;">
+                    🔒 Pay & Confirm Booking
+                </button>
+                <a href="shows.html" class="btn btn-secondary btn-block" style="margin-top: 0.75rem;">
+                    Cancel & Return to Shows
+                </a>
+            </form>
+        </div>
+
+        <!-- Success Receipt (Hidden until booked) -->
+        <div class="form-card" id="receiptCard" style="display: none; text-align: center;">
+            <div style="font-size: 3.5rem; margin-bottom: 1rem;">🎉</div>
+            <h2 style="color: var(--success); margin-bottom: 0.5rem;">Booking Confirmed!</h2>
+            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Your seats have been successfully reserved.</p>
+            
+            <div style="background: var(--bg-main); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.5rem; text-align: left;">
+                <p><strong>Booking ID:</strong> #<span id="recBookingId"></span></p>
+                <p><strong>Movie:</strong> <span id="recMovie"></span></p>
+                <p><strong>Seats:</strong> <span id="recSeats" style="color: var(--accent);"></span></p>
+                <p><strong>Amount Paid:</strong> <span id="recAmount" style="color: var(--primary);"></span></p>
+                <p><strong>Status:</strong> <span class="badge badge-confirmed">Confirmed</span></p>
+            </div>
+
+            <a href="my-bookings.html" class="btn btn-primary btn-block">View in My Bookings</a>
+        </div>
+    </main>
+
+    <script src="js/api.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/confirm.js"></script>
+</body>
+</html>

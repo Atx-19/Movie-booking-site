@@ -1,0 +1,78 @@
+### ================================================================
+### Movie Ticket Booking System — REST API Test Suite
+### Can be executed with VS Code REST Client extension or curl
+### ================================================================
+
+@baseUrl = http://localhost:5000/api
+
+### 1. Health Check
+GET {{baseUrl}}/health
+
+### 2. Get All Movies (with search and genre filtering)
+GET {{baseUrl}}/movies?search=Dune
+
+### 3. Get All Genres
+GET {{baseUrl}}/movies/genres/all
+
+### 4. Get Single Movie Details with Reviews
+GET {{baseUrl}}/movies/1
+
+### 5. Get Shows for a Movie
+GET {{baseUrl}}/shows?movie_id=1
+
+### 6. Get Live Seat Map for Show #1 (includes is_booked flag)
+GET {{baseUrl}}/shows/1/seats
+
+### 7. Book Tickets (Call Stored Procedure with Row Locking)
+POST {{baseUrl}}/bookings
+Content-Type: application/json
+
+{
+  "user_id": 3,
+  "show_id": 1,
+  "seat_ids": [19, 20],
+  "payment_method": "upi"
+}
+
+### 8. Attempt Double Booking of SAME Seats (Expect 409 Conflict)
+POST {{baseUrl}}/bookings
+Content-Type: application/json
+
+{
+  "user_id": 4,
+  "show_id": 1,
+  "seat_ids": [19],
+  "payment_method": "credit_card"
+}
+
+### 9. Get User Booking History
+GET {{baseUrl}}/bookings/user/3
+
+### 10. Cancel a Booking (Frees Seats & Fires Audit Trigger)
+DELETE {{baseUrl}}/bookings/1
+
+### 11. View Movie Revenue Leaderboard (Database View v_movie_revenue)
+GET {{baseUrl}}/reports/movie-revenue
+
+### 12. View Live Show Seat Availability (Database View v_show_availability)
+GET {{baseUrl}}/reports/show-availability
+
+### 13. View Busiest Theatres (GROUP BY + HAVING)
+GET {{baseUrl}}/reports/busiest-theatres?minBookings=2
+
+### 14. View Above-Average Rated Movies (Scalar Subquery)
+GET {{baseUrl}}/reports/top-rated-movies
+
+### 15. View Cancellation Audit Logs (audit_log table)
+GET {{baseUrl}}/reports/audit-logs
+
+### 16. Add a Review
+POST {{baseUrl}}/reviews
+Content-Type: application/json
+
+{
+  "user_id": 4,
+  "movie_id": 1,
+  "rating": 5,
+  "review_text": "Mind-blowing cinema experience!"
+}

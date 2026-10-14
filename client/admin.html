@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard — Movie Ticket Booking System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <main class="main-container">
+        <header class="page-header">
+            <h1>Cinema Administrator Portal</h1>
+            <p>Manage movie catalogs, schedule shows, test overlap triggers, and monitor systems.</p>
+        </header>
+
+        <div id="adminAlert"></div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 2rem;">
+            <!-- Form 1: Add New Movie -->
+            <section class="form-card" style="margin: 0; max-width: 100%;">
+                <h2 style="color: var(--primary); font-size: 1.3rem; margin-bottom: 1.25rem;">🎬 Add New Movie</h2>
+                <form id="addMovieForm">
+                    <div class="form-group">
+                        <label for="mTitle">Movie Title *</label>
+                        <input type="text" id="mTitle" class="form-control" placeholder="e.g. Gladiator II" required>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label for="mDuration">Duration (minutes) *</label>
+                            <input type="number" id="mDuration" class="form-control" placeholder="150" min="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mLanguage">Language</label>
+                            <input type="text" id="mLanguage" class="form-control" placeholder="English" value="English">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="mReleaseDate">Release Date</label>
+                        <input type="date" id="mReleaseDate" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="mDescription">Synopsis / Plot Summary</label>
+                        <textarea id="mDescription" class="form-control" rows="3" placeholder="Enter brief plot summary..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Add Movie to Database</button>
+                </form>
+            </section>
+
+            <!-- Form 2: Schedule Show (Tests Overlap Trigger!) -->
+            <section class="form-card" style="margin: 0; max-width: 100%;">
+                <h2 style="color: var(--primary); font-size: 1.3rem; margin-bottom: 0.25rem;">🕒 Schedule New Show</h2>
+                <div style="font-size: 0.8rem; color: var(--accent); margin-bottom: 1.25rem;">
+                    Enforces MySQL Trigger: Overlapping intervals on same screen will be rejected!
+                </div>
+                <form id="scheduleShowForm">
+                    <div class="form-group">
+                        <label for="sMovie">Select Movie *</label>
+                        <select id="sMovie" class="form-control" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="sScreen">Select Theatre & Screen *</label>
+                        <select id="sScreen" class="form-control" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="sShowTime">Show Start Date & Time *</label>
+                        <input type="datetime-local" id="sShowTime" class="form-control" required>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.75rem;">
+                        <div class="form-group">
+                            <label for="pReg">Regular (₹)</label>
+                            <input type="number" id="pReg" class="form-control" value="200" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pPrem">Premium (₹)</label>
+                            <input type="number" id="pPrem" class="form-control" value="350" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pVip">VIP (₹)</label>
+                            <input type="number" id="pVip" class="form-control" value="500" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Schedule Show</button>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>DBMS Project — Movie Ticket Booking System</p>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

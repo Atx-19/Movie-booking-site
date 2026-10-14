@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bookings — Movie Ticket Booking System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <main class="main-container">
+        <header class="page-header">
+            <h1>My Bookings History</h1>
+            <p>View your reservations, seat allocations, or cancel tickets to free up seats.</p>
+        </header>
+
+        <div id="alertBox"></div>
+
+        <section id="bookingsList" style="display: flex; flex-direction: column; gap: 1.5rem;">
+            <p style="color: var(--text-muted);">Loading your tickets...</p>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>DBMS Project — Movie Ticket Booking System</p>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/bookings.js"></script>
+</body>
+</html>
